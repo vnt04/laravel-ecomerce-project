@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 
 use Illuminate\Http\Request;
-use App\Services\UserService;
+use App\Services\IUserService;
 use App\Http\Controllers\Controller;
 
 
@@ -12,9 +12,9 @@ use App\Http\Controllers\Controller;
 class RegisterController extends Controller
 {
     protected $redirectTo = "/home";
-    protected UserService $userService;
+    protected IUserService $userService;
 
-    public function __construct(UserService $userService)
+    public function __construct(IUserService $userService)
     {
         $this->userService = $userService;
     }

@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Customer extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasApiTokens, HasFactory, Notifiable;
@@ -22,7 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'status',
+        'phone_number',
+        'address',
+        'profile_image',
     ];
 
     /**
@@ -46,23 +47,5 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    /**
-     * Methods for Status of User
-     */
-    public function isActive(): bool
-    {
-        return $this->status === 'active';
-    }
-
-    public function activate(): void
-    {
-        $this->update(['status' => 'active']);
-    }
-
-    public function deactivate(): void
-    {
-        $this->update(['status' => 'inactive']);
     }
 }

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import api from "../api/axios";
+import api from "../api";
 import { useRouter } from "vue-router";
 
 const email = ref("");
@@ -46,7 +46,7 @@ const handleLogin = async () => {
             Login
         </button>
         <p class="mt-3 text-sm text-center">
-            Don’t have an account?
+            Don't have an account?
             <router-link to="/register" class="text-blue-600"
                 >Register</router-link
             >

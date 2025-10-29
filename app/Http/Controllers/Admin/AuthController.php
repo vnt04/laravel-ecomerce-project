@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\UserService;
+use App\Services\IUserService;
 
 
 class AuthController extends Controller
 {
     
-    protected UserService $userService;
+    protected IUserService $userService;
 
-    public function __construct(UserService $userService)
+    public function __construct(IUserService $userService)
     {
         $this->userService = $userService;
     }
@@ -37,11 +37,6 @@ class AuthController extends Controller
             'user'    => $result['user'],
             'token'   => $result['token'],
         ]);
-    }
-
-    public function profile(Request $request)
-    {
-        return response()->json($request->user());
     }
 
     public function logout(Request $request)

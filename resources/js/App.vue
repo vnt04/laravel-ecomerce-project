@@ -1,7 +1,8 @@
 <template>
   <div class="text-center mt-10">
-    <h1 class="text-3xl font-bold text-green-600">Hello from Vue 3 + Laravel 12</h1>
+    <h1 class="text-3xl font-bold text-green-600">Demo E-commerce App Laravel</h1>
   </div>
+  <router-view />
 </template>
 
 <script setup>

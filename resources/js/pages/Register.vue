@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import api from "../api/axios";
+import api from "../api";
 import { useRouter } from "vue-router";
 
 const name = ref("");
