@@ -1,10 +1,10 @@
 <?php
 namespace App\Repositories\Implementations;
 
-use App\Repositories\ProductRepositoryInterface;
+use App\Repositories\IProductRepository;
 
-class ProductRepositoryImpl implements ProductRepositoryInterface {
-    public function getAllProduct() {
+class ProductRepositoryImpl implements IProductRepository {
+    public function getAllProducts() {
 
     }
 

@@ -2,7 +2,7 @@
 namespace App\Repositories;
 
 
-interface ProductRepositoryInterface {
-    function getAllProduct();
+interface IProductRepository {
+    function getAllProducts();
     function createProduct(array $data);
 }

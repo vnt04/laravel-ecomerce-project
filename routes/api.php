@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route; 
-use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RegisterController;
+use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Customer\CustomerController;
 
 // ================== ADMIN/USER ==================
@@ -19,7 +19,7 @@ Route::prefix('admin/auth')->group(function () {
 });
 
 Route::middleware(['auth:admin','checkUserIsActive'])->prefix('admin/products')->group(function () {
-    Route::post('/', [ProductController::class, 'create']); 
+    Route::post('/', [ProductController::class, 'create']);
     Route::put('/{id}', [ProductController::class, 'update']);
     Route::delete('/{id}', [ProductController::class, 'delete']);
 });
