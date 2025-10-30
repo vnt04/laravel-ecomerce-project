@@ -2,15 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Product;
+use App\Models\Customer;
+use App\Models\OrderItem;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = ['user_id', 'total', 'status'];
+    protected $fillable = ['customer_id', 'total', 'status'];
 
-    public function user()
+    public function customer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Customer::class, 'customer_id');
+                        
     }
 
     public function products()
