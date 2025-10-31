@@ -29,4 +29,8 @@ class ProductRepositoryImpl implements IProductRepository {
         return Product::destroy($id);
     }
 
+    public function getProductStockById($id) {
+        return Product::where('id', $id)->value('stock');
+    }
+
 }

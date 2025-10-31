@@ -15,7 +15,7 @@ class OrderServiceImpl implements IOrderService {
 
     public function __construct(IOrderRepository $orderRepository)
     {
-        $this->orderRepository = $orderRepository;    
+        $this->orderRepository = $orderRepository; 
     }
 
     public function getAllOrders() {
@@ -100,8 +100,6 @@ class OrderServiceImpl implements IOrderService {
         if($order['status'] !== 'pending') {
             throw new BadRequestHttpException("You only update order in status pending.");
         }
-
-        // check stock to ensure enough products for order.
 
         return $this->orderRepository->updateOrder($id, $newData);
 

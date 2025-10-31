@@ -9,4 +9,5 @@ interface IProductRepository {
     function isExist($id);
     function updateProduct($id, array $updateData);
     function deleteProduct($id);
+    function getProductStockById($id);
 }

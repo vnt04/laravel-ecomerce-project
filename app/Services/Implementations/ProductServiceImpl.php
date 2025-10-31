@@ -3,6 +3,7 @@ namespace App\Services\Implementations;
 
 use App\Repositories\IProductRepository;
 use App\Services\IProductService;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProductServiceImpl implements IProductService {
@@ -38,5 +39,22 @@ class ProductServiceImpl implements IProductService {
             throw new NotFoundHttpException("Product with ID {$id} not found.");
         }
         return $this->productRepository->deleteProduct($id);
+    }
+
+
+    public function updateStock($id, $quantity)
+    {
+        if(!$this->productRepository->isExist($id)) {
+            throw new NotFoundHttpException("Product with ID {$id} not found.");
+        }
+        
+        $availableStock = $this->productRepository->getProductStockById($id);
+
+        if($availableStock < $quantity) {
+            throw new BadRequestHttpException("Not enough stock for Product with ID {$id}.");
+        }
+        $newStock = $availableStock - $quantity;
+
+        return $this->productRepository->updateProduct($id, ['stock' => $newStock]);
     }
 }

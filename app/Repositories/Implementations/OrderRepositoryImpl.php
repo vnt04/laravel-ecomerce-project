@@ -12,17 +12,17 @@ class OrderRepositoryImpl implements IOrderRepository {
     public function getAllOrders()
     {
         // return Order::all()->load(['items','products']);
-        return Order::all();
+        return Order::all()->load('items.product');
     }
 
     public function getById($id) {
         // return Order::find($id)->load(['items','products']);
-        return Order::find($id);
+        return Order::find($id)->load('items.product');
     }
 
     public function getAllOrdersByCustomerId($customerId) {
         // return Order::where('customer_id', $customerId)->get()->load(['items','products']);
-        return Order::where('customer_id', $customerId)->get();
+        return Order::where('customer_id', $customerId)->get()->load('items.product');
     }
     
     public function create(array $newOrder) {
@@ -33,7 +33,7 @@ class OrderRepositoryImpl implements IOrderRepository {
                 'price' => $product['price'],
             ]);
         }
-        return $order;
+        return $order->load('items.product');
     }
 
     public function isExist($id) {
@@ -44,7 +44,7 @@ class OrderRepositoryImpl implements IOrderRepository {
         $order = Order::find($id);
         $order['status'] = $newStatus;
         $order->save();
-        return $order;
+        return $order->load('items.product');
     }
 
     public function updateOrder($id, $newData) {
@@ -67,7 +67,7 @@ class OrderRepositoryImpl implements IOrderRepository {
         });
 
         $order->save();
-        return $order;
+        return $order->load('items.product');
         
     }
 }

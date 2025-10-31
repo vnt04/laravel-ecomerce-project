@@ -33,9 +33,10 @@ Route::middleware(['auth:admin','checkUserIsActive'])->prefix('admin/products')-
 });
 
 /**
+ *  ===== ADMIN - ORDER =====
  *  index --> list all orders from db
  *  getById --> available 
- *  confirm --> change order status from 'pending' to 'confirmed'.
+ *  confirm --> change order status from 'pending' to 'confirmed' --> check and update stock --> handle transaction with 2 operations.
  *  cancel --> change order status from 'pending' to 'cancelled'.
  */
 
@@ -62,6 +63,7 @@ Route::prefix('customer')->group(function () {
 });
 
 /**
+ *  ===== CUSTOMER - ORDER =====
  *  myOrders --> list all orders of current customer --> based on token customer by sanctum in request.
  *  getById --> get order by id --> need to check if order belongs to current customer ????.
  *  create --> create new order --> authenticated.
@@ -79,3 +81,4 @@ Route::prefix('products')->group(function () {
     Route::get('/', [ProductController::class, 'index']);
     Route::get('/{id}', [ProductController::class, 'getById']);
 });
+

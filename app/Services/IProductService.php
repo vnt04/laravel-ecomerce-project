@@ -7,4 +7,5 @@ interface IProductService {
     function getProductById($id);
     function updateProduct($id, array $updateData);
     function deleteProduct($id);
+    function updateStock($id, $quantity);
 }
