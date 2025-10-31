@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\IUserService;
-
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class AuthController extends Controller
 {
@@ -29,7 +29,8 @@ class AuthController extends Controller
         $result = $this->userService->login($credentials['email'], $credentials['password']);
 
         if (!$result) {
-            return response()->json(['message' => 'Invalid email or password.'], 401);
+            throw new UnauthorizedHttpException("WWW-Authenticate", "Invalid email or password.");
+            // return response()->json(['message' => 'Invalid email or password.'], 401);
         }
 
         return response()->json([
