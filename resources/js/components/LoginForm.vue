@@ -54,7 +54,9 @@ const submitLogin = async () => {
   serverErrors.password = '';
 
   try {
-    const res = await axios.post('api/login', form);
+    const res = await axios.post('api/admin/auth/login', form);
+    console.log(res);
+    localStorage.setItem('access_token', res.data.token);
     window.location.href = '/home';
   } catch (err) {
     console.log(err);

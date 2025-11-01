@@ -46,7 +46,7 @@ class ProductController extends Controller
             ],404);
         }
         return response()->json([
-            'product' => $product,
+            'data' => $product,
         ]);
     }
 

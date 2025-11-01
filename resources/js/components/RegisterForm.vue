@@ -61,7 +61,7 @@ const submitRegister = async () => {
   serverErrors.password = '';
 
   try {
-    const res = await axios.post('api/register', form);
+    const res = await axios.post('api/admin/auth/register', form);
     window.location.href = '/login';
   } catch (err) {
     if (err.response && err.response.data.errors) {

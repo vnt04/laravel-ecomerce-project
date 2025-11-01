@@ -8,6 +8,8 @@ import '../css/app.css';
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import ProductPage from './components/admin/product/ProductPage.vue';
+import ProductDetail from './components/admin/product/ProductDetail.vue';
+import OrderPage from './components/admin/order/OrderPage.vue';
 
 const app = createApp({});
 
@@ -17,5 +19,7 @@ app.component('login-form', LoginForm);
 app.component('register-form', RegisterForm);
 app.component('home-page', Home);
 app.component('product-page', ProductPage);
+app.component('product-detail', ProductDetail);
+app.component('order-page', OrderPage);
 
 app.mount('#app');
