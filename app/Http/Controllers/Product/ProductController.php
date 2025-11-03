@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Product;
 use Illuminate\Http\Request;
 use App\Services\IProductService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
 
 class ProductController extends Controller
 {
@@ -23,19 +24,16 @@ class ProductController extends Controller
             'products' => $products,
         ], 200);
     }
-
-    public function create(Request $request) {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
-        ]);
+    
+    public function create(StoreProductRequest $request) {
+        $validatedData = $request->validated();
 
         $newProduct = $this->productService->createProduct($validatedData);
 
-        return response()->json(['message' => 'Product created successfully', 'product' => $newProduct], 201);
-
+        return response()->json([
+            'message' => 'Product created successfully',
+            'product' => $newProduct
+        ], 201);
     }
 
     public function getById($id) {

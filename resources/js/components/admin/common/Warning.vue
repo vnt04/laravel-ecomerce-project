@@ -31,6 +31,7 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue", "confirm"]);
 const visible = ref(props.modelValue);
+console.log(visible);
 
 const handleConfirm = () => {
   emit("confirm"); 

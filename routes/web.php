@@ -26,3 +26,6 @@ Route::get("/product/{id}", function($id) {
 Route::get("/order", function(){
     return view('admin.order.index');
 })->name('order');
+Route::get("/order/{id}", function($id) {
+    return view('admin.order.detail', ['id' => $id]);
+})->name('order-detail');

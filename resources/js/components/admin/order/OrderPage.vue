@@ -42,7 +42,12 @@
   <Warning 
     v-model="showWarningConfirm" 
     message="Are you sure to change status this order to CONFIRMED"
-    @confirm="updateStatus"/>
+    @confirm="updateStatusToConfirmed"/>
+
+  <Warning 
+    v-model="showWarningCancel" 
+    message="Are you sure to change status this order to CANCELLED"
+    @confirm="updateStatusToCanceled"/>
 </template>
 
 <script setup>
@@ -55,16 +60,35 @@ import Warning from "../common/Warning.vue";
 const orders = ref(null);
 
 const showWarningConfirm = ref(false);
+const showWarningCancel = ref(false);
 const orderId = ref(null);
+
+const handleClick = (id) => {
+  window.location.href = `order/${id}`;
+}
 
 const handleConfirm = (id) => {
   orderId.value = id;
   showWarningConfirm.value = true;
 }
 
-const updateStatus = async () => {
+const handleCancel = (id) => {
+  orderId.value = id;
+  showWarningCancel.value = true;
+}
+
+const updateStatusToConfirmed = async () => {
   try {
     await api(`admin/orders/${orderId.value}/confirm`, "PUT");
+    await fetchOrders();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const updateStatusToCanceled = async () => {
+  try {
+    await api(`admin/orders/${orderId.value}/cancel`, "PUT");
     await fetchOrders();
   } catch (error) {
     console.log(error);

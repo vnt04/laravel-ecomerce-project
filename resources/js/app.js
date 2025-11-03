@@ -10,6 +10,7 @@ import 'element-plus/dist/index.css'
 import ProductPage from './components/admin/product/ProductPage.vue';
 import ProductDetail from './components/admin/product/ProductDetail.vue';
 import OrderPage from './components/admin/order/OrderPage.vue';
+import OrderDetail from './components/admin/order/OrderDetail.vue';
 
 const app = createApp({});
 
@@ -21,5 +22,6 @@ app.component('home-page', Home);
 app.component('product-page', ProductPage);
 app.component('product-detail', ProductDetail);
 app.component('order-page', OrderPage);
+app.component('order-detail', OrderDetail);
 
 app.mount('#app');
