@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Product;
 
 use Illuminate\Http\Request;
 use App\Services\IProductService;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 
@@ -18,6 +19,7 @@ class ProductController extends Controller
 
     public function index(Request $request) {
         $products = $this->productService->getAllProducts();
+        Log::info('Giá sản phẩm: ' . format_price(250000));
         return response()->json([
             'message' => 'Get all products successfully',
             'total' => count($products),
@@ -26,9 +28,8 @@ class ProductController extends Controller
     }
     
     public function create(StoreProductRequest $request) {
-        $validatedData = $request->validated();
 
-        $newProduct = $this->productService->createProduct($validatedData);
+        $newProduct = $this->productService->createProduct($request->validated());
 
         return response()->json([
             'message' => 'Product created successfully',

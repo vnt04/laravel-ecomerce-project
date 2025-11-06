@@ -28,4 +28,6 @@ class StoreProductRequest extends FormRequest
             'stock' => 'required|integer|min:0',
         ];
     }
+
+
 }
